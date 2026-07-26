@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/24.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.MainController"
+      spacing="10" prefWidth="1000" prefHeight="640"
+      styleClass="root-pane">
+
+    <padding>
+        <Insets top="14" right="14" bottom="14" left="14"/>
+    </padding>
+
+    <!-- Header -->
+    <Label text="Student Record Management System" styleClass="title">
+        <font><Font size="18"/></font>
+    </Label>
+
+    <!-- Form Grid -->
+    <GridPane hgap="10" vgap="8" styleClass="card">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="25"/>
+            <ColumnConstraints percentWidth="25"/>
+            <ColumnConstraints percentWidth="25"/>
+            <ColumnConstraints percentWidth="25"/>
+        </columnConstraints>
+
+        <!-- Row 0 -->
+        <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <Label text="ID:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+        <TextField fx:id="idField" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+        <!-- Row 1 -->
+        <Label text="Department:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="deptField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Email:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+        <TextField fx:id="emailField" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+        <!-- Row 2 -->
+        <Label text="CGPA:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="cgpaField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <!-- Buttons -->
+        <HBox alignment="CENTER_LEFT" spacing="8"
+              GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2"
+              styleClass="toolbar">
+            <Button fx:id="addButton" text="Add"    onAction="#addStudent"    prefWidth="90" styleClass="primary"/>
+            <Button fx:id="updateButton" text="Update" onAction="#updateStudent" prefWidth="90" styleClass="primary"/>
+            <Button fx:id="deleteButton" text="Delete" onAction="#deleteStudent" prefWidth="90" styleClass="danger"/>
+        </HBox>
+
+        <rowConstraints>
+            <RowConstraints/>
+            <RowConstraints/>
+            <RowConstraints/>
+        </rowConstraints>
+    </GridPane>
+
+    <!-- Search -->
+    <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label text="Search (Name / ID / Dept):"/>
+        <TextField fx:id="searchField" promptText="Type to search..." prefWidth="220"/>
+    </HBox>
+
+    <!-- Table -->
+    <TableView fx:id="tableView" VBox.vgrow="ALWAYS" onMouseClicked="#onTableClicked">
+        <columns>
+            <TableColumn fx:id="colName"  text="Name"        prefWidth="180"/>
+            <TableColumn fx:id="colId"    text="ID"          prefWidth="140"/>
+            <TableColumn fx:id="colDept"  text="Department"  prefWidth="140"/>
+            <TableColumn fx:id="colEmail" text="Email"       prefWidth="220"/>
+            <TableColumn fx:id="colCgpa"  text="CGPA"        prefWidth="80"/>
+        </columns>
+    </TableView>
+
+</VBox>
